@@ -3,7 +3,7 @@ LOCALE = ENV["KIPU_LOCALE"] ||= 'en'
 
 require 'date'
 
-if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US'
+if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA' || LOCALE == 'en_CA_MIL'
   # Modify parsing methods to handle american date format correctly.
   class << Date
     # American date format detected by the library.
@@ -20,7 +20,7 @@ if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US'
       _parse_without_american_date(convert_american_to_iso(string), comp)
     end
 
-    if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US'
+    if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA' || LOCALE == 'en_CA_MIL'
       # Alias for stdlib Date.parse
       alias parse_without_american_date parse
 
@@ -49,7 +49,7 @@ if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US'
     end
   end
 
-  if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US'
+  if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA' || LOCALE == 'en_CA_MIL'
     # Modify parsing methods to handle american date format correctly.
     class << DateTime
       # Alias for stdlib Date.parse
