@@ -3,7 +3,9 @@ LOCALE = ENV["KIPU_LOCALE"] ||= 'en'
 
 require 'date'
 
-if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA' || LOCALE == 'en_CA_MIL' || LOCALE == 'en_CA_METRIC' || LOCALE == 'en_CA_METRIC_MIL' 
+if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA' ||
+    LOCALE == 'en_CA_MIL' || LOCALE == 'en_CA_METRIC' || LOCALE == 'en_CA_METRIC_MIL' ||
+    LOCALE == 'en_METRIC'
   # Modify parsing methods to handle american date format correctly.
   class << Date
     # American date format detected by the library.
