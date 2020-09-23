@@ -3,9 +3,9 @@ LOCALE = ENV["KIPU_LOCALE"] ||= 'en'
 
 require 'date'
 
-if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA' ||
-    LOCALE == 'en_CA_MIL' || LOCALE == 'en_CA_METRIC' || LOCALE == 'en_CA_METRIC_MIL' ||
-    LOCALE == 'en_METRIC'
+AMERICAN_LOCALES = %w(en en_MIL en_US en_CA en_CA_MIL en_CA_METRIC en_CA_METRIC_MIL en_METRIC)
+
+if AMERICAN_LOCALES.include? LOCALE
   # Modify parsing methods to handle american date format correctly.
   class << Date
     # American date format detected by the library.
@@ -22,7 +22,7 @@ if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA
       _parse_without_american_date(convert_american_to_iso(string), comp)
     end
 
-    if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA' || LOCALE == 'en_CA_MIL' || LOCALE == 'en_CA_METRIC' || LOCALE == 'en_CA_METRIC_MIL' 
+    if AMERICAN_LOCALES.include? LOCALE
       # Alias for stdlib Date.parse
       alias parse_without_american_date parse
 
@@ -34,7 +34,7 @@ if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA
 
     private
 
-    # Transform american date fromat into ISO format.
+    # Transform american date format into ISO format.
     def convert_american_to_iso(string)
       unless string.is_a?(String)
         if string.respond_to?(:to_str)
@@ -51,7 +51,7 @@ if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA
     end
   end
 
-  if LOCALE == 'en' || LOCALE == 'en_MIL' || LOCALE == 'en_US' || LOCALE == 'en_CA' || LOCALE == 'en_CA_MIL' || LOCALE == 'en_CA_METRIC' || LOCALE == 'en_CA_METRIC_MIL' 
+  if AMERICAN_LOCALES.include? LOCALE
     # Modify parsing methods to handle american date format correctly.
     class << DateTime
       # Alias for stdlib Date.parse
